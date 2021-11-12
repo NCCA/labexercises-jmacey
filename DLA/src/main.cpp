@@ -11,7 +11,7 @@ int main()
     w.randomImageSeed();
 
 
-  int iterations = 1000;
+  int iterations = 50000;
   int simCount=0;
   int imageIndex=0;
   for(int i=0; i<iterations; ++i)

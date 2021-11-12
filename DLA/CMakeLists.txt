@@ -25,5 +25,5 @@ target_sources(DLA PRIVATE
                            include/Image.h 
 )
 
-target_link_libraries(DLA PRIVATE OpenImageIO::OpenImageIO OpenImageIO::OpenImageIO_Util OpenMP::OpenMP_CXX)
+target_link_libraries(DLA PRIVATE OpenImageIO::OpenImageIO OpenImageIO::OpenImageIO_Util png_static)
 add_compile_options(-Wall -Wextra ) #-pedantic)
