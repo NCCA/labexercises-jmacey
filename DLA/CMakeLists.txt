@@ -9,7 +9,7 @@ endif()
 project(DLA_build)
 find_package(OpenImageIO CONFIG REQUIRED)
 find_package(OpenMP)
-
+find_package(cxxopts CONFIG REQUIRED)
 
 # Here we set the C++ standard to use
 set(CMAKE_CXX_STANDARD 17)
@@ -25,5 +25,5 @@ target_sources(DLA PRIVATE
                            include/Image.h 
 )
 
-target_link_libraries(DLA PRIVATE OpenImageIO::OpenImageIO OpenImageIO::OpenImageIO_Util OpenMP::OpenMP_CXX)
+target_link_libraries(DLA PRIVATE OpenImageIO::OpenImageIO OpenImageIO::OpenImageIO_Util png_static  cxxopts::cxxopts)
 add_compile_options(-Wall -Wextra ) #-pedantic)

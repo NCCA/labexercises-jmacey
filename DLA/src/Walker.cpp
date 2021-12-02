@@ -36,7 +36,42 @@ void Walker::randomImageSeed()
 
 bool Walker::walk()
 {
-  return true;
+  bool walking = true;
+  bool found;
+  while(walking)
+  {
+    // move walker
+    m_xpos += g_walkDir(g_rng);
+    m_ypos += g_walkDir(g_rng);
+    // check for boundary 
+    if(m_xpos ==0 || m_xpos >= m_map->width()-1 ||
+       m_ypos ==0 || m_ypos >= m_map->height()-1
+    )
+    {
+      std::cout<<"hit wall\n";
+      walking=false;
+      found = false;
+      break;
+    }
+    // check for pixel to aggregate (hit)
+    RGBA p;
+    for(int y=-1; y<=1; ++y)
+    {
+      for(int x=-1; x<=1; ++x)
+      {
+        p=m_map->getPixel(m_xpos+x,m_ypos+y);
+        if(p.a == 255)
+        {
+          std::cout<<"found a pixel "<<m_xpos<<' '<<m_xpos<<'\n';
+          m_map->setPixel(m_xpos,m_ypos,0,0,0,255);
+          walking=false;
+          found = true;
+          break;
+        }
+      }
+    }
+  }
+  return found;
 }
 
 void Walker::resetStart()
